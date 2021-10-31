@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterform/screens/fetch_data_home.dart';
 import 'package:flutterform/screens/home_screens.dart';
 
 void main() {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home:  const HomeScreen(),
+      home:  const HomePage(),
     );
   }
 }

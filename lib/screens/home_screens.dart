@@ -104,20 +104,20 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.black),
-                  onPressed: () {
-                    print('Signing up');
-                  },
-                  child: Container(
-                    width: double.infinity,
-                    child: const Text(
-                      'SIGNUP',
-                      style: TextStyle(color: Colors.white),
-                      textAlign: TextAlign.center,
-                    ),
-                  ),
-                ),
+                // ElevatedButton(
+                //   style: ElevatedButton.styleFrom(primary: Colors.black),
+                //   onPressed: () {
+                //     print('Signing up');
+                //   },
+                //   child: Container(
+                //     width: double.infinity,
+                //     child: const Text(
+                //       'SIGNUP',
+                //       style: TextStyle(color: Colors.white),
+                //       textAlign: TextAlign.center,
+                //     ),
+                //   ),
+                // ),
               ],
             ),
           ),
