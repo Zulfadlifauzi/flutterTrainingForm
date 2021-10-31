@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutterform/model/login_model.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -9,6 +10,24 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   final _formKey = GlobalKey<FormState>();
+  // GlobalKey<FormState> globalFormKey = GlobalKey<FormState>();
+  late LoginRequestModel requestModel;
+
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  @override
+  void initState() {
+    requestModel = LoginRequestModel();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -32,7 +51,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 20,
                 ),
                 TextFormField(
-                    obscureText: true,
+                    onSaved: (input) => requestModel.name = input,
                     decoration: InputDecoration(
                         hintText: 'Masukan Nama Penuh',
                         labelText: 'Name',
@@ -44,7 +63,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 20,
                 ),
                 TextFormField(
-                    obscureText: true,
+                    onSaved: (input) => requestModel.email = input,
                     decoration: InputDecoration(
                         hintText: 'john@mail...eg,.',
                         labelText: 'Email',
@@ -56,6 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 20,
                 ),
                 TextFormField(
+                    onSaved: (input) => requestModel.password = input,
                     obscureText: true,
                     decoration: InputDecoration(
                         labelText: 'Password',
@@ -71,6 +91,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     print('Login successfully');
                     if (_formKey.currentState!.validate()) {}
+                    if (validateAndSave()) {
+                      print(requestModel.toJson());
+                    }
                   },
                   child: Container(
                     width: double.infinity,
@@ -81,8 +104,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                  ElevatedButton(
-                    style:  ElevatedButton.styleFrom(primary: Colors.black),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.black),
                   onPressed: () {
                     print('Signing up');
                   },
@@ -95,7 +118,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-
               ],
             ),
           ),
@@ -120,7 +142,7 @@ String? _validationEmail(value) {
 }
 
 String? _validationPassword(value) {
-  if (value.length<6) {
+  if (value.length < 6) {
     return 'Password must be at least 6 characters long';
   }
   return null;
