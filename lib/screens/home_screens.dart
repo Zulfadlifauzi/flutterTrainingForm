@@ -67,6 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 20,
                 ),
                 ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.yellow),
                   onPressed: () {
                     print('Login successfully');
                     if (_formKey.currentState!.validate()) {}
@@ -75,10 +76,26 @@ class _HomeScreenState extends State<HomeScreen> {
                     width: double.infinity,
                     child: const Text(
                       'LOGIN',
+                      style: TextStyle(color: Colors.black),
                       textAlign: TextAlign.center,
                     ),
                   ),
-                )
+                ),
+                  ElevatedButton(
+                    style:  ElevatedButton.styleFrom(primary: Colors.black),
+                  onPressed: () {
+                    print('Signing up');
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    child: const Text(
+                      'SIGNUP',
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
+
               ],
             ),
           ),
