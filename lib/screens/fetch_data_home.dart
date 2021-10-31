@@ -1,8 +1,6 @@
 import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
 
@@ -13,7 +11,6 @@ class HomePage extends StatefulWidget {
 String? stringResponse;
 Map? mapResponse;
 List? listResponse;
-
 class _HomePageState extends State<HomePage> {
   String url = 'https://reqres.in/api/users?page=2';
   Future apicall() async {
@@ -27,13 +24,11 @@ class _HomePageState extends State<HomePage> {
       });
     }
   }
-
   @override
   void initState() {
     apicall();
     super.initState();
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,33 +36,19 @@ class _HomePageState extends State<HomePage> {
           title: const Text('GET Form'),
         ),
         body: ListView.builder(
-          shrinkWrap: true,
-          physics: BouncingScrollPhysics(),
+          itemCount: listResponse == null ? 0 : listResponse!.length,
           itemBuilder: (context, index) {
             return Container(
-              padding: const EdgeInsets.only(left: 20,bottom: 10),
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.start,
+              child: Column(
                 children: [
                   Image.network(listResponse![index]['avatar']),
-                  Container(
-                    padding: EdgeInsets.only(left: 20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(listResponse![index]['first_name']),
-                        const SizedBox(height: 5,),
-                        Text(listResponse![index]['last_name']),
-                        const SizedBox(height: 5,),
-                        Text(listResponse![index]['email']),
-                      ],
-                    ),
-                  )
+                  Text(listResponse![index]['first_name']),
+                  Text(listResponse![index]['last_name']),
+                  Text(listResponse![index]['email']),
                 ],
               ),
             );
           },
-          itemCount: listResponse== null ? 0:listResponse!.length,
         ));
   }
 }
