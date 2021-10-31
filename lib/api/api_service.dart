@@ -3,6 +3,8 @@ import 'dart:convert';
 import 'package:flutterform/model/login_model.dart';
 import 'package:http/http.dart' as http;
 
+String? stringResponse;
+
 class APIService {
   Future<LoginResponseModel> login(LoginRequestModel requestModel) async {
     String url = 'https://reqres.in/api/login';

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutterform/model/login_model.dart';
 
+import 'fetch_data_home.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
 
@@ -89,7 +91,6 @@ class _HomeScreenState extends State<HomeScreen> {
                 ElevatedButton(
                   style: ElevatedButton.styleFrom(primary: Colors.yellow),
                   onPressed: () {
-                    print('Login successfully');
                     if (_formKey.currentState!.validate()) {}
                     if (validateAndSave()) {
                       print(requestModel.toJson());
@@ -104,20 +105,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                // ElevatedButton(
-                //   style: ElevatedButton.styleFrom(primary: Colors.black),
-                //   onPressed: () {
-                //     print('Signing up');
-                //   },
-                //   child: Container(
-                //     width: double.infinity,
-                //     child: const Text(
-                //       'SIGNUP',
-                //       style: TextStyle(color: Colors.white),
-                //       textAlign: TextAlign.center,
-                //     ),
-                //   ),
-                // ),
+                ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.black),
+                  onPressed: () {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => HomePage()));
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    child: const Text(
+                      'FETCHING',
+                      style: TextStyle(color: Colors.white),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                ),
               ],
             ),
           ),
